@@ -39,7 +39,7 @@ exports.userLogin  = (req, res,next)=> {
 exports.userInsert = (req, res) =>{
 	let user    = new User(),
         params  = req.body; 
-    
+    console.log(req.body)
     user.nickName   = params.nickName;
     user.firstName  = params.firstName;
 	user.lastName   = params.lastName;
@@ -50,7 +50,7 @@ exports.userInsert = (req, res) =>{
 	User.findOne({ userName: user.userName }, (err, userMongo) => {
 			if (err) return res.status(500).send(500, err.message)
             if (userMongo) return res.send(500, 'this user is already used')   
-            if (!params.password) return rres.send(500, 'Mandatory password')   
+            if (!params.password) return res.send(500, 'Mandatory password')   
             if (!user.nickName) return res.send(500, 'Mandatory nickName')
 
             bcrypt.hash(params.password, null, null, function (err, hash) {
@@ -69,10 +69,11 @@ exports.userInsert = (req, res) =>{
 //PUT - Update User
 exports.userUpdate = (req, res) => {
     let params  = req.body,
-	    _id     = params._id;
+        _id     = params._id;
+        console.log("update", params)
     User.findById(_id, (err, userUpdate) => {
         if (err) return res.status(500).send(500, err.message)
-        if (params.nickName)   userUpdate.nickName  = params.nickName
+        if (params.nickName)    userUpdate.nickName  = params.nickName
         if (params.firstName)   userUpdate.firstName = params.firstName 
         if (params.lastName)    userUpdate.lastName  = params.lastName 
         if (params.password)    userUpdate.password  = params.password

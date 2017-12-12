@@ -11,12 +11,12 @@ var express         = require("express"),
     engines         = require('consolidate'),
     db              = mongoose.connection;
 
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
+    app.use(methodOverride());
 
 require('./config/routes/routes-user-example')(app);
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(methodOverride());
 //================MONGODB==================//
 mongoose.connect(URI,{ useMongoClient: true }, (err, res) =>{
     if (err) return console.log("Error MongoDB -->",err.message)
@@ -24,7 +24,7 @@ mongoose.connect(URI,{ useMongoClient: true }, (err, res) =>{
 })
 //==================API + Aplicacion==================//
 app.use(express.static(path.join(__dirname, 'public')))
-app.set('views', __dirname + '/view');
+app.set('views', __dirname + '/views');
 app.engine('ejs', engines.mustache);
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('body'))
