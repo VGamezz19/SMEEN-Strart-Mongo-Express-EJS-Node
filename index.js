@@ -12,8 +12,7 @@ var express         = require("express"),
     db              = mongoose.connection;
 
 
-require('./models/user')
-require('./models/preguntas') // ROUTES
+require('../routes/routes-user-example.js')(app);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
