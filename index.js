@@ -5,25 +5,27 @@ var express         = require("express"),
     http            = require("http"),
     server          = http.createServer(app),
     mongoose        = require('mongoose'),
-    URI             = process.env.MONGODB_URI || 'localhost/userPasaPalabra',
+    URI             = process.env.MONGODB_URI || 'mongodb://localhost/startFastNode',
     PORT            = process.env.PORT || 5000,
     path            = require('path'),
     engines         = require('consolidate'),
     db              = mongoose.connection;
 
 
-require('../routes/routes-user-example.js')(app);
+require('./config/routes/routes-user-example')(app);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 //================MONGODB==================//
-mongoose.connect(URI)
-db.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connect(URI,{ useMongoClient: true }, (err, res) =>{
+    if (err) return console.log("Error MongoDB -->",err.message)
+    return console.log("Succes! MongoDB run fine")
+})
 //==================API + Aplicacion==================//
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', __dirname + '/view');
 app.engine('ejs', engines.mustache);
 app.set('view engine', 'ejs');
-app.get('/', (req, res) => res.render('pasa-palabra'))
+app.get('/', (req, res) => res.render('body'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

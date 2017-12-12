@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    User = require('../models/user'),
+    User = require('../models/user-model-example'),
     bcrypt = require('bcrypt-nodejs');
 
 //GET - ALL USERS

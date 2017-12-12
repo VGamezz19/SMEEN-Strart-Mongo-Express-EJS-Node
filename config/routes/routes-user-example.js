@@ -1,6 +1,6 @@
 'use strict';
 
-var User = require('../controllers/usersServer-controller')
+var User = require('../controllers/user-controller-example')
 
 module.exports = function(app) {
     app.route('/api/user')
