@@ -70,7 +70,6 @@ exports.userInsert = (req, res) =>{
 exports.userUpdate = (req, res) => {
     let params  = req.body,
         _id     = params._id;
-        console.log("update", params)
     User.findById(_id, (err, userUpdate) => {
         if (err) return res.status(500).send(500, err.message)
         if (params.nickName)    userUpdate.nickName  = params.nickName
@@ -84,7 +83,6 @@ exports.userUpdate = (req, res) => {
 
 		userUpdate.save((err) =>{
             if(err) return res.status(500).send(500,err.message);
-            
             return res.status(200).jsonp(userUpdate);
 		});
 	});
@@ -92,7 +90,8 @@ exports.userUpdate = (req, res) => {
 
 //DELETE - Delete User
 exports.userDelete = (req, res)=> {
-    var i_d = req.params._id
+    var _id = req.params.id
+    console.log(req.params)
 	User.findById(_id, (err, userDelete) =>{
         if (err) return res.status(500).send(500, err.message)
 		userDelete.remove((err) =>{

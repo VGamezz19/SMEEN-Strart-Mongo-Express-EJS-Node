@@ -29,3 +29,5 @@ app.engine('ejs', engines.mustache);
 app.set('view engine', 'ejs');
 app.get('/', (req, res) => res.render('body'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+//Start environment of Node with Express, Mongoose, EJS and an example of login User (with password encrypted) Bcrypt-nodejs
