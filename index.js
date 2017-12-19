@@ -24,9 +24,12 @@ mongoose.connect(URI,{ useMongoClient: true }, (err, res) =>{
 })
 //==================API + Aplicacion==================//
 app.use(express.static(path.join(__dirname, 'public')))
-app.set('views', __dirname + '/views');
-app.engine('ejs', engines.mustache);
 app.set('view engine', 'ejs');
+app.get('/', function(req, res) {
+    res.render('body');
+});
+//app.set('views', __dirname + '/views');
+app.engine('ejs', engines.mustache);
 app.get('/', (req, res) => res.render('body'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
