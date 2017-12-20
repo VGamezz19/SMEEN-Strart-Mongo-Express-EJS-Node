@@ -1,0 +1,28 @@
+{
+  "name": "start-Node-Mongoose-MongoLab-MongoDB-EJS",
+  "description": "Enviromment Node Express Mongoose EJS",
+  "main": "index.js",
+  "authors": [
+    "VGamezz19 <victor.gamez1596@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "mongoDB",
+    "mongoLab",
+    "EJS"
+  ],
+  "homepage": "https://github.com/VGamezz19/Start-Node-Mongoose-MongoLab-MongoDB-EJS",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
