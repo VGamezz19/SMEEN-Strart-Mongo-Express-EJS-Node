@@ -6,7 +6,7 @@ var express         = require("express"),
     server          = http.createServer(app),
     mongoose        = require('mongoose'),
     URI             = process.env.MONGODB_URI || 'mongodb://localhost/startFastNode',
-    PORT            = process.env.PORT || 5000,
+    PORT            = process.env.PORT || 5001,
     path            = require('path'),
     engines         = require('consolidate'),
     db              = mongoose.connection;
@@ -28,8 +28,6 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
     res.render('body');
 });
-//app.set('views', __dirname + '/views');
-app.engine('ejs', engines.mustache);
 app.get('/', (req, res) => res.render('body'))
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
